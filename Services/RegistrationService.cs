@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using Newtonsoft.Json;
 using System.Threading;
 using System.Numerics;
+using Microsoft.EntityFrameworkCore;
 
 namespace Ski_Service_Management.Services
 {
@@ -12,15 +13,16 @@ namespace Ski_Service_Management.Services
     {
 
         static List<Registration> registrations { get; set; }
+        static List<Status> status { get; set; }
         static RegistrationService()
         {
 
             var context = new ManagementContext();
-            registrations = context.Registrations.ToList();
+            status = context.Status.Include("registrations").ToList();
 
         }
 
-        public static List<Registration> GetAll() => registrations;
+        public static List<Status> GetAll() => status;
 
         public static Registration? Get(int id) => registrations.FirstOrDefault(p => p.Id == id);
 

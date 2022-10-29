@@ -1,8 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Hosting;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -15,9 +17,15 @@ namespace Ski_Service_Management.Models
 
         public DbSet<Registration> Registrations { get; set; }
 
+        public DbSet<Status> Status { get; set; }
+
+        public DbSet<Priority> Prioritys { get; set; }
+
         public ManagementContext()
         {
         }
+
+        
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

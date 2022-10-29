@@ -15,7 +15,7 @@ namespace Ski_Service_Management.Controllers
         }
         
         [HttpGet]
-        public ActionResult<List<Registration>> GetAll() =>
+        public ActionResult<List<Status>> GetAll() =>
         RegistrationService.GetAll();
 
         [HttpPost]

@@ -12,8 +12,8 @@ using Ski_Service_Management.Models;
 namespace Ski_Service_Management.Migrations
 {
     [DbContext(typeof(ManagementContext))]
-    [Migration("20221029150701_Initial")]
-    partial class Initial
+    [Migration("20221029223537_Status")]
+    partial class Status
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -45,6 +45,23 @@ namespace Ski_Service_Management.Migrations
                     b.ToTable("Mitarbeiters");
                 });
 
+            modelBuilder.Entity("Ski_Service_Management.Models.Priority", b =>
+                {
+                    b.Property<int>("PriorityId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PriorityId"), 1L, 1);
+
+                    b.Property<string>("PriorityName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("PriorityId");
+
+                    b.ToTable("Prioritys");
+                });
+
             modelBuilder.Entity("Ski_Service_Management.Models.Registration", b =>
                 {
                     b.Property<int>("Id")
@@ -71,17 +88,51 @@ namespace Ski_Service_Management.Migrations
                     b.Property<DateTime>("Pickup_Date")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Priority")
+                    b.Property<string>("Service")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Service")
+                    b.Property<int>("StatusId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("StatusId");
+
+                    b.ToTable("Registrations");
+                });
+
+            modelBuilder.Entity("Ski_Service_Management.Models.Status", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("StatusName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Registrations");
+                    b.ToTable("Status");
+                });
+
+            modelBuilder.Entity("Ski_Service_Management.Models.Registration", b =>
+                {
+                    b.HasOne("Ski_Service_Management.Models.Status", "Status")
+                        .WithMany("registrations")
+                        .HasForeignKey("StatusId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Status");
+                });
+
+            modelBuilder.Entity("Ski_Service_Management.Models.Status", b =>
+                {
+                    b.Navigation("registrations");
                 });
 #pragma warning restore 612, 618
         }

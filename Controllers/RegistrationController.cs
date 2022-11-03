@@ -34,22 +34,17 @@ namespace Ski_Service_Management.Controllers
         [HttpGet("{id}")]
         public ActionResult<RegistrationModel> Get(int id)
         {
-            if(_registrationsService.GetAll() == null)
+            if (_registrationsService.GetAll() == null)
                 return NotFound();
             return _registrationsService.Get(id);
         }
 
+
         [HttpPut("{id}")]
-        public IActionResult Update(int id, Registration registration)
+        public IActionResult Update(int id, RegistrationModel model)
         {
-            if (id != registration.Id)
-                registration.Id = id;
 
-            var existingRegistration = _registrationsService.Get(id);
-            if (existingRegistration is null)
-                return NotFound();
-
-            _registrationsService.Update(registration);
+            _registrationsService.Update(id, model);
 
             return NoContent();
         }

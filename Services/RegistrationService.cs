@@ -48,6 +48,13 @@ namespace Ski_Service_Management.Services
             return registrationModels;
         }
 
+        public Registration? GetId(int id)
+        {
+            registrations = _managementContext.Registrations.ToList();
+            return registrations.FirstOrDefault(p => p.Id == id);
+        }
+
+
 
         public RegistrationModel Get(int id)
         {
@@ -86,24 +93,30 @@ namespace Ski_Service_Management.Services
             _managementContext.SaveChanges();            
         }
 
-        public void Update(Registration registration)
+        public void Update(int id, RegistrationModel registration)
         {
-            var context = new ManagementContext();
-            registrations = context.Registrations.ToList();
-            var index = registrations.FindIndex(p => p.Id == registration.Id);
-            if (index == -1)
-                return;           
 
-            context.Remove(registrations[index]);
-            context.Add(registration);
-            context.SaveChanges();
+            Registration reg = new Registration();
+            reg = GetId(id);
+
+
+
+            reg.Name = registration.Name;
+            reg.Email = registration.Email;
+            reg.Phone = registration.Phone;
+            reg.Created_Date = registration.Created_Date;
+            reg.Pickup_Date = registration.Pickup_Date;
+            reg.Service = _managementContext.Services.FirstOrDefault(e => e.ServiceName == registration.Service);
+            reg.Priority = _managementContext.Prioritys.FirstOrDefault(e => e.PriorityName == registration.Priority);
+            reg.Status = _managementContext.Status.FirstOrDefault(e => e.StatusName == registration.Status);
+
+            _managementContext.Entry(reg).State = EntityState.Modified;
+            _managementContext.SaveChanges();
         }
 
         public void Delete(int id)
         {
-            var context = new ManagementContext();
-            registrations = _managementContext.Registrations.ToList();
-            var registration = Get(id);
+            var registration = GetId(id);
             if (registration is null)
                 return;
 

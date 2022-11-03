@@ -10,30 +10,33 @@ namespace Ski_Service_Management.Controllers
     [ApiController]
     public class RegistrationController : ControllerBase
     {
-        public RegistrationController()
+
+        private readonly IRegistrationsService _registrationsService;
+        public RegistrationController(IRegistrationsService registrationsService)
         {
+            _registrationsService = registrationsService;
         }
         
         [HttpGet]
-        public ActionResult<List<Status>> GetAll() =>
-        RegistrationService.GetAll();
+        public ActionResult<List<RegistrationModel>> GetAll() =>
+        _registrationsService.GetAll();
 
         [HttpPost]
-        public IActionResult Create(Registration registration)
+        public ActionResult Create(RegistrationModel registration)
         {
-            RegistrationService.Add(registration);
+           
+            _registrationsService.Add(registration);
             return CreatedAtAction(nameof(Create), new { id = registration.Id }, registration);
+            
         }
 
+
         [HttpGet("{id}")]
-        public ActionResult<Registration> Get(int id)
+        public ActionResult<RegistrationModel> Get(int id)
         {
-            var registration = RegistrationService.Get(id);
-
-            if (registration == null)
+            if(_registrationsService.GetAll() == null)
                 return NotFound();
-
-            return registration;
+            return _registrationsService.Get(id);
         }
 
         [HttpPut("{id}")]
@@ -42,11 +45,11 @@ namespace Ski_Service_Management.Controllers
             if (id != registration.Id)
                 registration.Id = id;
 
-            var existingRegistration = RegistrationService.Get(id);
+            var existingRegistration = _registrationsService.Get(id);
             if (existingRegistration is null)
                 return NotFound();
 
-            RegistrationService.Update(registration);
+            _registrationsService.Update(registration);
 
             return NoContent();
         }
@@ -54,12 +57,12 @@ namespace Ski_Service_Management.Controllers
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            var registration = RegistrationService.Get(id);
+            var registration = _registrationsService.Get(id);
 
             if (registration is null)
                 return NotFound();
 
-            RegistrationService.Delete(id);
+            _registrationsService.Delete(id);
 
             return NoContent();
         }

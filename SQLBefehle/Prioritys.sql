@@ -1,12 +1,28 @@
 use Ski_Service;
 
-insert into Mitarbeiters( Name, password)
+insert into Prioritys( PriorityName)
 values
 (
 	
-	'Urs',
-	1234
+	'Tief'
+	
 );
+insert into Prioritys( PriorityName)
+values
+(
+	
+	'Standart'
+	
+);
+
+insert into Prioritys( PriorityName)
+values
+(
+	
+	'Express'
+	
+);
+
 
 
 

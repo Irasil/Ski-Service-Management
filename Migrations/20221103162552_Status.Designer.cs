@@ -12,8 +12,8 @@ using Ski_Service_Management.Models;
 namespace Ski_Service_Management.Migrations
 {
     [DbContext(typeof(ManagementContext))]
-    [Migration("20221029223625_Statuse")]
-    partial class Statuse
+    [Migration("20221103162552_Status")]
+    partial class Status
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -88,18 +88,41 @@ namespace Ski_Service_Management.Migrations
                     b.Property<DateTime>("Pickup_Date")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Service")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("PriorityId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ServiceId")
+                        .HasColumnType("int");
 
                     b.Property<int>("StatusId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
+                    b.HasIndex("PriorityId");
+
+                    b.HasIndex("ServiceId");
+
                     b.HasIndex("StatusId");
 
                     b.ToTable("Registrations");
+                });
+
+            modelBuilder.Entity("Ski_Service_Management.Models.Service", b =>
+                {
+                    b.Property<int>("ServiceId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ServiceId"), 1L, 1);
+
+                    b.Property<string>("ServiceName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ServiceId");
+
+                    b.ToTable("Services");
                 });
 
             modelBuilder.Entity("Ski_Service_Management.Models.Status", b =>
@@ -121,18 +144,44 @@ namespace Ski_Service_Management.Migrations
 
             modelBuilder.Entity("Ski_Service_Management.Models.Registration", b =>
                 {
+                    b.HasOne("Ski_Service_Management.Models.Priority", "Priority")
+                        .WithMany("PriorityRegistration")
+                        .HasForeignKey("PriorityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Ski_Service_Management.Models.Service", "Service")
+                        .WithMany("ServiceRegistration")
+                        .HasForeignKey("ServiceId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("Ski_Service_Management.Models.Status", "Status")
-                        .WithMany("registrations")
+                        .WithMany("StatusRegistration")
                         .HasForeignKey("StatusId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.Navigation("Priority");
+
+                    b.Navigation("Service");
+
                     b.Navigation("Status");
+                });
+
+            modelBuilder.Entity("Ski_Service_Management.Models.Priority", b =>
+                {
+                    b.Navigation("PriorityRegistration");
+                });
+
+            modelBuilder.Entity("Ski_Service_Management.Models.Service", b =>
+                {
+                    b.Navigation("ServiceRegistration");
                 });
 
             modelBuilder.Entity("Ski_Service_Management.Models.Status", b =>
                 {
-                    b.Navigation("registrations");
+                    b.Navigation("StatusRegistration");
                 });
 #pragma warning restore 612, 618
         }

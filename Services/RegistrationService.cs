@@ -44,12 +44,15 @@ namespace Ski_Service_Management.Services
                 Status = r.Status.StatusName
 
             }));
-
+            //var lol = 3;
+            //var hey = lol / 0;
             return registrationModels;
         }
 
         public Registration? GetId(int id)
         {
+            //var lol = 3;
+            //var hey = lol / 0;
             registrations = _managementContext.Registrations.ToList();
             return registrations.FirstOrDefault(p => p.Id == id);
         }
@@ -58,6 +61,8 @@ namespace Ski_Service_Management.Services
 
         public RegistrationModel Get(int id)
         {
+            //var lol = 3;
+            //var hey = lol / 0;
             List<RegistrationModel> t = GetAll();
             RegistrationModel r = t.Find(p => p.Id == id);
             if (r == null)
@@ -77,7 +82,9 @@ namespace Ski_Service_Management.Services
         }
 
         public void Add(RegistrationModel registration)
-        {       
+        {
+            //var lol = 3;
+            //var hey = lol / 0;
 
             Registration newreg = new Registration()
             {
@@ -97,6 +104,8 @@ namespace Ski_Service_Management.Services
 
         public void Update(int id, RegistrationModel registration)
         {
+            //var lol = 3;
+            //var hey = lol / 0;
 
             Registration reg = new Registration();
             reg = GetId(id);
@@ -118,6 +127,8 @@ namespace Ski_Service_Management.Services
 
         public void Delete(int id)
         {
+            //var lol = 3;
+            //var hey = lol / 0;
             var registration = GetId(id);
             if (registration is null)
                 return;

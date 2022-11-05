@@ -14,25 +14,12 @@ namespace Ski_Service_Management.Services
         {
             _managementContext = context;
         }
-        //public List<PriorityModel> GetAll()
-        //{
-
-        //    List<Priority> priority = new List<Priority>();
-        //    priority = _managementContext.Prioritys.Include("PriorityRegistration").ToList();
-
-        //    List<PriorityModel> priorityList = new List<PriorityModel>();
-
-        //    priority.ForEach(r => priorityList.Add(new PriorityModel()
-        //    {
-        //        Priority = r.PriorityName,
-                
-
-        //    }));
-        //    return priorityList;
-        //}
+        
 
         public List<PriorityModel> GetAll()
         {
+            //var lol = 3;
+            //var hey = lol / 0;
             List<Priority> priority = new List<Priority>();
             priority = _managementContext.Prioritys.Include("PriorityRegistration").Include("PriorityRegistration.Status").Include("PriorityRegistration.Service").ToList();
 

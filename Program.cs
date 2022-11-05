@@ -39,9 +39,7 @@ internal class Program
 
         var provider = DataProtectionProvider.Create(line);
         var protector = provider.CreateProtector(line);
-        
-        string deencrypted = protector.Unprotect(line1);
-        var hey = string.Format(lol, deencrypted);
+        string.Format(lol, protector.Unprotect(line1));
          
         // Add services to the container.
         builder.Services.AddScoped<IRegistrationsService, RegistrationService>();

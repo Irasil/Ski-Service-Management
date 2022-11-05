@@ -9,6 +9,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Text\**" />
+    <Content Remove="Text\**" />
+    <EmbeddedResource Remove="Text\**" />
+    <None Remove="Text\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AutoMapper" Version="12.0.0" />
     <PackageReference Include="IdentityServer4" Version="4.1.2" />
     <PackageReference Include="Microsoft.AspNet.Identity.Core" Version="2.2.3" />

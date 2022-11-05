@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Infrastructure.Internal;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using System;
@@ -26,7 +25,6 @@ namespace Ski_Service_Management.Models
 
         public ManagementContext()
         {
-            
         }
 
         public ManagementContext(DbContextOptions<ManagementContext> options)

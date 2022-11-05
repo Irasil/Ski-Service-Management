@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using System.Reflection.Metadata.Ecma335;
 using Microsoft.AspNetCore.Mvc;
-
+using AutoMapper;
 
 namespace Ski_Service_Management.Services
 {
@@ -60,8 +60,6 @@ namespace Ski_Service_Management.Services
         {
             List<RegistrationModel> t = GetAll();
             RegistrationModel r = t.Find(p => p.Id == id);
-            if (r == null)
-                return r;
             return new RegistrationModel()
             {
                 Id = r.Id,

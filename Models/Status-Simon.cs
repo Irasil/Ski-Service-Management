@@ -9,7 +9,7 @@ namespace Ski_Service_Management.Models
         public int StatusId { get; set; }
         public string StatusName { get; set; }
         
-        public List<Registration> StatusRegistration { get; set; }    = new List<Registration>();   
+        public List<Registration> StatusRegistration { get; set; }      
         
     }
 }

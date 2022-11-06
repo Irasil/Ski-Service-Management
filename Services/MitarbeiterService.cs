@@ -11,6 +11,7 @@ namespace Ski_Service_Management.Services
 {
     public class MitarbeiterService : IMitarbeiterService
     {
+        public int counter;
         public List<Mitarbeiter> mitarbeiters;
         private readonly ManagementContext _managementContext;
         private readonly ITokenService _tokenService;
@@ -25,13 +26,24 @@ namespace Ski_Service_Management.Services
         {
             //var lol = 3;
             //var hey = lol / 0;
+            
             mitarbeiters = _managementContext.Mitarbeiters.ToList();
             foreach(var m in mitarbeiters)
             {
                 if (m.Name == mitarbeiter.Name && m.password == mitarbeiter.password)
                 {
+                    //_managementContext.SaveChanges(m.Counter == 0);
                     return new JsonResult(new { userName = mitarbeiter.Name, token = _tokenService.CreateToken(mitarbeiter.Name) });
-                }                
+                } else if (m.Name == mitarbeiter.Name && m.password != mitarbeiter.password)
+                {
+                    m.Counter += 1;
+                    _managementContext.SaveChanges(mitarbeiter.Counter == m.Counter);
+                    if (m.Counter >= 3)
+                    {
+                        //JsonResult gespert = new JsonResult(new {m.Counter});
+                        return null;
+                    }
+                }              
             }
             return null;
         }

@@ -12,8 +12,8 @@ using Ski_Service_Management.Models;
 namespace Ski_Service_Management.Migrations
 {
     [DbContext(typeof(ManagementContext))]
-    [Migration("20221103190152_Statuse")]
-    partial class Statuse
+    [Migration("20221106141307_MitarbeiterCounter")]
+    partial class MitarbeiterCounter
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -31,6 +31,9 @@ namespace Ski_Service_Management.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("Counter")
+                        .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .IsRequired()

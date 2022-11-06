@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Ski_Service_Management.Migrations
 {
-    public partial class Status : Migration
+    public partial class MitarbeiterCounter : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -16,7 +16,8 @@ namespace Ski_Service_Management.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    password = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    password = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Counter = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {

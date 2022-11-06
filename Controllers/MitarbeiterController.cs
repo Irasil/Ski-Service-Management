@@ -25,10 +25,16 @@ namespace Ski_Service_Management.Controllers
             try
             {
                 JsonResult json = _mitarbeiterService.ProveUser(model);
-                if (json != null)
+
+                
+
+                if (json != null )
                     return Ok(json);
                 else
-                    return BadRequest("Invalid Credentials");
+                {
+                    return BadRequest("Invalid Credentials or user is blocked");
+                }
+                    
             }
             catch (Exception ex)
             {

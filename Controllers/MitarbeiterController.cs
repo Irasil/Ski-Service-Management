@@ -25,11 +25,17 @@ namespace Ski_Service_Management.Controllers
             try
             {
                 JsonResult json = _mitarbeiterService.ProveUser(model);
+                string lol = json.Value.ToString();
+                bool hey = false;   
+                hey = lol.Contains("gespert");
 
-                
 
-                if (json != null )
+                if (json != null && hey == false)
                     return Ok(json);
+                else if (json != null && hey == true)
+                {
+                    return BadRequest("user is blocked");
+                }
                 else
                 {
                     return BadRequest("Invalid Credentials or user is blocked");

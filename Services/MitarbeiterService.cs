@@ -32,7 +32,7 @@ namespace Ski_Service_Management.Services
             {
                 if (m.Name == mitarbeiter.Name && m.password == mitarbeiter.password)
                 {
-                    //_managementContext.SaveChanges(m.Counter == 0);
+                    _managementContext.SaveChanges(m.Counter == 0);
                     return new JsonResult(new { userName = mitarbeiter.Name, token = _tokenService.CreateToken(mitarbeiter.Name) });
                 } else if (m.Name == mitarbeiter.Name && m.password != mitarbeiter.password)
                 {
@@ -40,8 +40,8 @@ namespace Ski_Service_Management.Services
                     _managementContext.SaveChanges(mitarbeiter.Counter == m.Counter);
                     if (m.Counter >= 3)
                     {
-                        //JsonResult gespert = new JsonResult(new {m.Counter});
-                        return null;
+                        JsonResult gespert = new JsonResult(new {gespert = m.Counter});
+                        return gespert;
                     }
                 }              
             }

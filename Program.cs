@@ -26,21 +26,17 @@ internal class Program
 
         builder.Logging.ClearProviders();
         builder.Logging.AddSerilog(loggerFromSettings);
-       
-        
+
+        var key = builder.Configuration.GetValue<string>("Encryption:Key");
+        var provider = DataProtectionProvider.Create(key);
+        var protector = provider.CreateProtector(key);
+        var pw = builder.Configuration.GetValue<string>("Encryption:Password");
+        var con = builder.Configuration.GetConnectionString("MovieDB");
+        string.Format(con, protector.Unprotect(pw));
+
         builder.Services.AddDbContext<ManagementContext>(options =>
                     options.UseSqlServer(builder.Configuration.GetConnectionString("MovieDB")));
-        var lol = builder.Configuration.GetConnectionString("MovieDB");
-        var streamReader = new StreamReader("TextFile.txt");
-        var line = streamReader.ReadLine();
 
-        var streamReader1 = new StreamReader("TextFile1.txt");
-        var line1 = streamReader1.ReadLine();
-
-        var provider = DataProtectionProvider.Create(line);
-        var protector = provider.CreateProtector(line);
-        string.Format(lol, protector.Unprotect(line1));
-         
         // Add services to the container.
         builder.Services.AddScoped<IRegistrationsService, RegistrationService>();
         builder.Services.AddScoped<IPriorityService, PriorityService>();

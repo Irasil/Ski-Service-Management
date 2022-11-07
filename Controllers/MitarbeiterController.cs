@@ -17,7 +17,6 @@ namespace Ski_Service_Management.Controllers
         private readonly IMitarbeiterService _mitarbeiterService;
         public MitarbeiterController(IMitarbeiterService mitarbeiterService, ILogger<RegistrationController> logger)
         {
-
             _logger = logger;
             _mitarbeiterService = mitarbeiterService;
         }
@@ -31,34 +30,53 @@ namespace Ski_Service_Management.Controllers
         public IActionResult Login([FromBody] Mitarbeiter model)
         {
             try
-            {
-                
+            {                
                 JsonResult? json = _mitarbeiterService.ProveUser(model);
-                string? lol = json.Value.ToString();
-                bool hey = false;   
-                hey = lol.Contains("gespert");
-                bool nu = false;
-                nu = lol.Contains("Hey");
+                string? auswertung = json.Value.ToString();
+                bool gespert = false;
+                gespert = auswertung.Contains("gespert");
+                bool falsch = false;
+                falsch = auswertung.Contains("Falsch");
 
-
-                if (json != null && hey == false && nu == false)
+                if (gespert == false && falsch == false)
                     return Ok(json);
-                else if (json != null && hey == true)
+                else if (gespert == true)
                 {
-                    return BadRequest("user is blocked");
+                    return BadRequest("User ist blockiert");
                 }
                 else
                 {
-                    return BadRequest("Invalid Credentials");
-                }
-                    
+                    return BadRequest("User oder Passwort sind falsch");
+                }                    
             }
             catch (Exception ex)
             {
                 _logger.LogWarning($"Warning --> {ex.Message}");
                 return NotFound($"Warning --> {ex.Message}");
+            }            
+        }
+
+        /// <summary>
+        /// Kontroller um Mitarbeiter freizuschalten
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpPut("{id}")]
+        public IActionResult Deblock( int id)
+        {
+            try
+            {
+                var mitarbeiter = _mitarbeiterService.Deblocker(id);
+                if(mitarbeiter != null)
+                {
+                    return Ok("Mitarbeiter wurde wieder freigegeben");
+                }
+                return Ok("Mitarbeiter konnte nicht freigegeben werden oder er existiern nicht");
+            }catch (Exception ex)
+            {
+                _logger.LogWarning($"Warning --> {ex.Message}");
+                return NotFound($"Warning --> {ex.Message}");
             }
-            
         }
     }
 }

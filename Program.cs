@@ -27,13 +27,18 @@ internal class Program
         builder.Logging.ClearProviders();
         builder.Logging.AddSerilog(loggerFromSettings);
 
-        // Entschlüsseln des vorgefertgten Passwort, funktioniert erst nach dem man es eingerichtet hat
+        //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        // Entschlüsseln des vorgefertgten Passwort, funktioniert erst nach dem man es eingerichtet hat                             !!
+        // Dies ist, weil es nicht nur den von mir erstellen Schlüssel braucht, sondern auch das Zertifikat welches erstellt wurde. !!
+        // Das Zertifikat macht das Visual Studio für den PC und nicht für das Projekt!                                             !!
+        //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
         var key = builder.Configuration.GetValue<string>("Encryption:Key");
         var provider = DataProtectionProvider.Create(key);
         var protector = provider.CreateProtector(key);
         var pw = builder.Configuration.GetValue<string>("Encryption:Password");
         var con = builder.Configuration.GetConnectionString("MovieDB");
-        
+        //var hey = protector.Protect("Hallo1234");
 
         // Vebindung zu dem SQL Server mithilfe von dem decodierten Passwort
         builder.Services.AddDbContext<ManagementContext>(options =>

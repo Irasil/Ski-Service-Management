@@ -9,5 +9,6 @@ namespace Ski_Service_Management.Services
     public interface IMitarbeiterService
     {
         public JsonResult? ProveUser(Mitarbeiter mitarbeiter);
+        public Mitarbeiter Deblocker(int id);
     }
 }

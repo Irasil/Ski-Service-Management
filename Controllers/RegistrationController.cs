@@ -6,6 +6,10 @@ using Ski_Service_Management.Services;
 
 namespace Ski_Service_Management.Controllers
 {
+
+    /// <summary>
+    /// Kontroller für alle CRUD Operationen für die Registrationen
+    /// </summary>
     [Authorize]
     [Route("[controller]")]
     [ApiController]
@@ -19,9 +23,11 @@ namespace Ski_Service_Management.Controllers
             _logger = logger;
         }
         
-        [HttpGet]
-
-        
+        /// <summary>
+        /// Alle Registrationen
+        /// </summary>
+        /// <returns>Liste aller Registrationen</returns>
+        [HttpGet]        
         public ActionResult<List<RegistrationModel>> GetAll()
         {
             try
@@ -36,6 +42,11 @@ namespace Ski_Service_Management.Controllers
 
         }
        
+        /// <summary>
+        /// Neuen Einträge für Registrationen, ohnen Autorisierung möglich
+        /// </summary>
+        /// <param name="registration"></param>
+        /// <returns>Die Registration die gemacht wurde</returns>
         [AllowAnonymous]
         [HttpPost]
         public ActionResult Create(RegistrationModel registration)
@@ -52,7 +63,11 @@ namespace Ski_Service_Management.Controllers
             }
         }
 
-
+        /// <summary>
+        /// Registration nach Id
+        /// </summary>
+        /// <param name="id">Id von der Registration</param>
+        /// <returns>Die Registration mit der gesuchten Id</returns>
         [HttpGet("{id}")]
         public ActionResult<RegistrationModel> Get(int id)
         {
@@ -70,7 +85,12 @@ namespace Ski_Service_Management.Controllers
 
         }
 
-
+        /// <summary>
+        /// Registration updaten
+        /// </summary>
+        /// <param name="id">Id von der Registration</param>
+        /// <param name="model">Änderungen für dieser Eintrag</param>
+        /// <returns></returns>
         [HttpPut("{id}")]
         public IActionResult Update(int id, RegistrationModel model)
         {
@@ -87,6 +107,11 @@ namespace Ski_Service_Management.Controllers
             }
         }    
 
+        /// <summary>
+        /// Löscht einen Eintrag
+        /// </summary>
+        /// <param name="id">Id des zu löschenden Eintrag</param>
+        /// <returns></returns>
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {

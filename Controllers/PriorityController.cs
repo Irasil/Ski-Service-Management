@@ -7,6 +7,9 @@ using Ski_Service_Management.Services;
 namespace Ski_Service_Management.Controllers
 {
     
+    /// <summary>
+    /// Kontroller für das Abrufen der Aufträge nach ihrer Priorität
+    /// </summary>
     [Route("[controller]")]
     [ApiController]
     public class PriorityController : Controller
@@ -19,6 +22,10 @@ namespace Ski_Service_Management.Controllers
             _logger = logger;   
         }
 
+        /// <summary>
+        /// Liste aller Registrationen geordnet nach derer Priorität
+        /// </summary>
+        /// <returns>Liste der Registrationen geordnet nach Priorität</returns>
         [Authorize]
         [HttpGet]
         public ActionResult<List<PriorityModel>> GetAll()

@@ -13,6 +13,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Ski_Service_Management.Services
 {
+    /// <summary>
+    /// Klasse für die Registrationen
+    /// </summary>
     public class RegistrationService : IRegistrationsService
     {
 
@@ -20,13 +23,20 @@ namespace Ski_Service_Management.Services
         public List<Status> status { get; set; }
 
         private readonly ManagementContext _managementContext;
+
+        /// <summary>
+        /// Konstruktor
+        /// </summary>
+        /// <param name="context"></param>
         public RegistrationService(ManagementContext context)
         {
             _managementContext = context;
         }
 
-
-        //public static List<Registration> GetAll() => registrations;
+        /// <summary>
+        /// Gibt alle Registrationen als DTO zurück
+        /// </summary>
+        /// <returns>gistrationen DTO</returns>
         public List<RegistrationModel> GetAll()
         {
             List<RegistrationModel> registrationModels = new List<RegistrationModel>();
@@ -46,9 +56,15 @@ namespace Ski_Service_Management.Services
             }));
             //var lol = 3;
             //var hey = lol / 0;
+           
             return registrationModels;
         }
 
+        /// <summary>
+        /// Registration als Entity der gesuchten Id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>Registration als Entity</returns>
         public Registration? GetId(int id)
         {
             //var lol = 3;
@@ -58,7 +74,11 @@ namespace Ski_Service_Management.Services
         }
 
 
-
+        /// <summary>
+        /// Registrationen als DTO der gesuchten Id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>Registration als DTO</returns>
         public RegistrationModel Get(int id)
         {
             //var lol = 3;
@@ -81,6 +101,10 @@ namespace Ski_Service_Management.Services
             };           
         }
 
+        /// <summary>
+        /// Fügt einen neue Registration hinzu
+        /// </summary>
+        /// <param name="registration">DTO von Registration</param>
         public void Add(RegistrationModel registration)
         {
             //var lol = 3;
@@ -102,6 +126,11 @@ namespace Ski_Service_Management.Services
             _managementContext.SaveChanges();            
         }
 
+        /// <summary>
+        /// Updatet eine vorhandene Registration
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="registration"></param>
         public void Update(int id, RegistrationModel registration)
         {
             //var lol = 3;
@@ -109,8 +138,6 @@ namespace Ski_Service_Management.Services
 
             Registration reg = new Registration();
             reg = GetId(id);
-
-
 
             reg.Name = registration.Name;
             reg.Email = registration.Email;
@@ -125,6 +152,10 @@ namespace Ski_Service_Management.Services
             _managementContext.SaveChanges();
         }
 
+        /// <summary>
+        /// Löscht eine Registration anhand ihrer Id
+        /// </summary>
+        /// <param name="id"></param>
         public void Delete(int id)
         {
             //var lol = 3;

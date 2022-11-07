@@ -3,19 +3,27 @@ using Ski_Service_Management.Models;
 
 namespace Ski_Service_Management.Services
 {
+    /// <summary>
+    /// Klasse für Priority
+    /// </summary>
     public class PriorityService : IPriorityService
     {
-
-
         public List<PriorityModel> Priorities { get; set; }
 
         private readonly ManagementContext _managementContext;
+        /// <summary>
+        /// Konstruktor
+        /// </summary>
+        /// <param name="context">DbContext</param>
         public PriorityService(ManagementContext context)
         {
             _managementContext = context;
         }
         
-
+        /// <summary>
+        /// Registrationen als DTO ausgeben, nach derer Priorität
+        /// </summary>
+        /// <returns></returns>
         public List<PriorityModel> GetAll()
         {
             //var lol = 3;

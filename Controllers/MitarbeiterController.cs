@@ -6,6 +6,9 @@ using Ski_Service_Management.Services;
 
 namespace Ski_Service_Management.Controllers
 {
+    /// <summary>
+    /// Kontroller für die Verbindung zu der Tabelle Mitarbeiter
+    /// </summary>
     [Route("[controller]")]
     [ApiController]
     public class MitarbeiterController : ControllerBase
@@ -19,18 +22,26 @@ namespace Ski_Service_Management.Controllers
             _mitarbeiterService = mitarbeiterService;
         }
 
+        /// <summary>
+        /// Methode um die Eingaben der Mitarbeiter an den Service weiter zu leiten
+        /// </summary>
+        /// <param name="model">Eingaben des Mitarbeiters</param>
+        /// <returns>Ein JWT / Faschle eingaben / User ist blockiert</returns>
         [HttpPost]
         public IActionResult Login([FromBody] Mitarbeiter model)
         {
             try
             {
-                JsonResult json = _mitarbeiterService.ProveUser(model);
-                string lol = json.Value.ToString();
+                
+                JsonResult? json = _mitarbeiterService.ProveUser(model);
+                string? lol = json.Value.ToString();
                 bool hey = false;   
                 hey = lol.Contains("gespert");
+                bool nu = false;
+                nu = lol.Contains("Hey");
 
 
-                if (json != null && hey == false)
+                if (json != null && hey == false && nu == false)
                     return Ok(json);
                 else if (json != null && hey == true)
                 {
@@ -38,7 +49,7 @@ namespace Ski_Service_Management.Controllers
                 }
                 else
                 {
-                    return BadRequest("Invalid Credentials or user is blocked");
+                    return BadRequest("Invalid Credentials");
                 }
                     
             }

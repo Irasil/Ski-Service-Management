@@ -12,6 +12,9 @@ using System.Threading.Tasks;
 
 namespace Ski_Service_Management.Models
 {
+    /// <summary>
+    /// Erstellen der Tabellen und Verbindung zu denen 
+    /// </summary>
     public class ManagementContext : DbContext
     {
         public DbSet<Mitarbeiter> Mitarbeiters { get; set; }
@@ -33,20 +36,5 @@ namespace Ski_Service_Management.Models
     : base(options)
         {
         }
-
-
-
-        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        //{
-        //    var configuration = new ConfigurationBuilder()
-        //    .SetBasePath(Directory.GetCurrentDirectory())
-        //    .AddJsonFile($"appsettings.json").Build();
-
-        //    //var config = configuration.Build();
-        //    string lol = configuration.GetConnectionString("DB1");
-        //    //optionsBuilder.UseSqlServer(@"Data Source=DESKTOP-HM7PD66;Database=EFCoreCodeFirst;Trusted_Connection=True");
-        //    optionsBuilder.UseSqlServer(lol);
-        //}
-
     }
 }

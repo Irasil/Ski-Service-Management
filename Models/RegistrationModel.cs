@@ -1,5 +1,8 @@
 ﻿namespace Ski_Service_Management.Models
 {
+    /// <summary>
+    /// Modelklasse Registration für DTO
+    /// </summary>
     public class RegistrationModel
     {
         public int Id { get; set; }

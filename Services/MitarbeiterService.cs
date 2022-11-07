@@ -9,6 +9,9 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace Ski_Service_Management.Services
 {
+    /// <summary>
+    /// Klasse für die Verifikation der Mitarbeiter
+    /// </summary>
     public class MitarbeiterService : IMitarbeiterService
     {
         public int counter;
@@ -22,6 +25,11 @@ namespace Ski_Service_Management.Services
 
         }
 
+        /// <summary>
+        /// Mitarbeiter Autorisation,
+        /// </summary>
+        /// <param name="mitarbeiter"></param>
+        /// <returns></returns>
         public JsonResult? ProveUser(Mitarbeiter mitarbeiter)
         {
             //var lol = 3;
@@ -32,7 +40,8 @@ namespace Ski_Service_Management.Services
             {
                 if (m.Name == mitarbeiter.Name && m.password == mitarbeiter.password)
                 {
-                    _managementContext.SaveChanges(m.Counter == 0);
+                    m.Counter = 0;
+                    _managementContext.SaveChanges(mitarbeiter.Counter == m.Counter);
                     return new JsonResult(new { userName = mitarbeiter.Name, token = _tokenService.CreateToken(mitarbeiter.Name) });
                 } else if (m.Name == mitarbeiter.Name && m.password != mitarbeiter.password)
                 {
@@ -44,8 +53,9 @@ namespace Ski_Service_Management.Services
                         return gespert;
                     }
                 }              
-            }
-            return null;
+            } 
+             JsonResult nu = new JsonResult(new { hey = "Hey" });
+            return nu;
         }
     }
     

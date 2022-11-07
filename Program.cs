@@ -18,7 +18,7 @@ internal class Program
        
         var builder = WebApplication.CreateBuilder(args);
 
-
+        // Logger
         var loggerFromSettings = new LoggerConfiguration()
                        .ReadFrom.Configuration(builder.Configuration)
                        .Enrich.FromLogContext()
@@ -27,15 +27,17 @@ internal class Program
         builder.Logging.ClearProviders();
         builder.Logging.AddSerilog(loggerFromSettings);
 
+        // Entschlüsseln des vorgefertgten Passwort, funktioniert erst nach dem man es eingerichtet hat
         var key = builder.Configuration.GetValue<string>("Encryption:Key");
         var provider = DataProtectionProvider.Create(key);
         var protector = provider.CreateProtector(key);
         var pw = builder.Configuration.GetValue<string>("Encryption:Password");
         var con = builder.Configuration.GetConnectionString("MovieDB");
-        string.Format(con, protector.Unprotect(pw));
+        
 
+        // Vebindung zu dem SQL Server mithilfe von dem decodierten Passwort
         builder.Services.AddDbContext<ManagementContext>(options =>
-                    options.UseSqlServer(builder.Configuration.GetConnectionString("MovieDB")));
+                    options.UseSqlServer(string.Format(con, protector.Unprotect(pw))));
 
         // Add services to the container.
         builder.Services.AddScoped<IRegistrationsService, RegistrationService>();

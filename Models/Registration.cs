@@ -4,6 +4,9 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace Ski_Service_Management.Models
 {
+    /// <summary>
+    /// Inhalt der Tabelle Mitarbeiter
+    /// </summary>
     public class Registration
     {
         

@@ -2,6 +2,9 @@
 
 namespace Ski_Service_Management.Services
 {
+    /// <summary>
+    /// INteface für RegistrationsService
+    /// </summary>
     public interface IRegistrationsService
     {
 

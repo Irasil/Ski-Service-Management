@@ -5,6 +5,9 @@ using System.Text;
 
 namespace Ski_Service_Management.Services
 {
+	/// <summary>
+	/// Token generator Klasse vorgefertigt 
+	/// </summary>
 	public class TokenService : ITokenService
 	{
 		//Injecting IConfiguration into this class in order to read Token Key from the configuration file

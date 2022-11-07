@@ -3,6 +3,9 @@ using Microsoft.AspNetCore.Identity;
 
 namespace Ski_Service_Management.Models
 {
+    /// <summary>
+    /// Inhalt der Tabelle Mitarbeiter
+    /// </summary>
     public class Mitarbeiter
     {
         public int Id { get; set; }

@@ -54,9 +54,7 @@ namespace Ski_Service_Management.Services
                 Status = r.Status.StatusName
 
             }));
-            //var lol = 3;
-            //var hey = lol / 0;
-           
+         
             return registrationModels;
         }
 

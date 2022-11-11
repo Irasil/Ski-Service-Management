@@ -23,6 +23,8 @@ namespace Ski_Service_Management.Services
 
         }
 
+
+
         /// <summary>
         /// Mitarbeiter Autorisation,
         /// </summary>
@@ -70,6 +72,17 @@ namespace Ski_Service_Management.Services
                 return mitarbeiter;
             }
             return null;
+        }
+
+
+        /// <summary>
+        /// Ausgabe aller Mitarbeiter
+        /// </summary>
+        /// <returns></returns>
+        public List<Mitarbeiter> AllMitarbeiter()
+        {
+            mitarbeiters = _managementContext.Mitarbeiters.ToList();
+            return mitarbeiters;
         }
     }
     

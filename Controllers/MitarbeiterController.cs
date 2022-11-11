@@ -22,6 +22,28 @@ namespace Ski_Service_Management.Controllers
         }
 
         /// <summary>
+        /// Alle Mitarbeiter Anzeigen ohne Passwörter
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public IActionResult AllMitarbeiter()
+        {
+
+            try
+            {
+                List<Mitarbeiter> mitarbeiterList = new List<Mitarbeiter>();
+                mitarbeiterList = _mitarbeiterService.AllMitarbeiter();
+                return Ok(mitarbeiterList);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogWarning($"Warning --> {ex.Message}");
+                return NotFound($"Warning --> {ex.Message}");
+            }
+            
+        }
+
+        /// <summary>
         /// Methode um die Eingaben der Mitarbeiter an den Service weiter zu leiten
         /// </summary>
         /// <param name="model">Eingaben des Mitarbeiters</param>

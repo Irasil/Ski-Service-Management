@@ -44,6 +44,7 @@ internal class Program
         builder.Services.AddDbContext<ManagementContext>(options =>
                     options.UseSqlServer(string.Format(con, protector.Unprotect(pw))));
 
+
         // Add services to the container.
         builder.Services.AddScoped<IRegistrationsService, RegistrationService>();
         builder.Services.AddScoped<IPriorityService, PriorityService>();

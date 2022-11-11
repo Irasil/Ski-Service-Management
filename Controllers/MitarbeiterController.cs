@@ -33,6 +33,10 @@ namespace Ski_Service_Management.Controllers
             {
                 List<Mitarbeiter> mitarbeiterList = new List<Mitarbeiter>();
                 mitarbeiterList = _mitarbeiterService.AllMitarbeiter();
+                foreach(Mitarbeiter mitarbeiter in mitarbeiterList)
+                {
+                    mitarbeiter.password = "*******";
+                }
                 return Ok(mitarbeiterList);
             }
             catch (Exception ex)

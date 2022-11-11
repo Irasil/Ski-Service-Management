@@ -1,8 +1,7 @@
 ﻿using Microsoft.AspNet.Identity;
 using Microsoft.AspNetCore.Identity;
-//using Newtonsoft.Json;
-using System.Text.Json;
-using System.Text.Json.Serialization;
+using Newtonsoft.Json;
+
 
 namespace Ski_Service_Management.Models
 {
@@ -13,7 +12,6 @@ namespace Ski_Service_Management.Models
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        [JsonIgnore]
         public string password { get; set; }
         public int Counter{ get; set; }
     }

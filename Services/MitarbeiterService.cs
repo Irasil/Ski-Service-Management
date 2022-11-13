@@ -32,9 +32,6 @@ namespace Ski_Service_Management.Services
         /// <returns></returns>
         public JsonResult? ProveUser(Mitarbeiter mitarbeiter)
         {
-            //var lol = 3;
-            //var hey = lol / 0;
-
             //Hier ist es ein "Gebastel" ich wusste nicht wie ich es mit dem JsonResult besser machen könnte.
             
             mitarbeiters = _managementContext.Mitarbeiters.ToList();

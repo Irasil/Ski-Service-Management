@@ -22,7 +22,7 @@ namespace Ski_Service_Management.Controllers
             _registrationsService = registrationsService;
             _logger = logger;
         }
-        
+
         /// <summary>
         /// Alle Registrationen
         /// </summary>
@@ -92,7 +92,7 @@ namespace Ski_Service_Management.Controllers
         /// <param name="model">Änderungen für dieser Eintrag</param>
         /// <returns></returns>
         [HttpPut("{id}")]
-        public IActionResult Update(int id, RegistrationModel model)
+        public IActionResult Update(int id, RegistrationStatusModel model)
         {
 
             try

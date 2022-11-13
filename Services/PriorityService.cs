@@ -26,8 +26,6 @@ namespace Ski_Service_Management.Services
         /// <returns></returns>
         public List<PriorityModel> GetAll()
         {
-            //var lol = 3;
-            //var hey = lol / 0;
             List<Priority> priority = new List<Priority>();
             priority = _managementContext.Prioritys.Include("PriorityRegistration").Include("PriorityRegistration.Status").Include("PriorityRegistration.Service").ToList();
 

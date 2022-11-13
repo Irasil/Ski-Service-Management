@@ -65,6 +65,7 @@ namespace Ski_Service_Management.Services
         /// <returns>Registration als Entity</returns>
         public Registration? GetId(int id)
         {
+            //So habe ich die Exceptions getestet
             //var lol = 3;
             //var hey = lol / 0;
             registrations = _managementContext.Registrations.ToList();
@@ -79,8 +80,6 @@ namespace Ski_Service_Management.Services
         /// <returns>Registration als DTO</returns>
         public RegistrationModel Get(int id)
         {
-            //var lol = 3;
-            //var hey = lol / 0;
             List<RegistrationModel> t = GetAll();
             RegistrationModel r = t.Find(p => p.Id == id);
             if (r == null)
@@ -105,8 +104,6 @@ namespace Ski_Service_Management.Services
         /// <param name="registration">DTO von Registration</param>
         public void Add(RegistrationModel registration)
         {
-            //var lol = 3;
-            //var hey = lol / 0;
 
             Registration newreg = new Registration()
             {
@@ -129,26 +126,43 @@ namespace Ski_Service_Management.Services
         /// </summary>
         /// <param name="id"></param>
         /// <param name="registration"></param>
-        public void Update(int id, RegistrationModel registration)
+        public void Update(int id, RegistrationStatusModel registration)
         {
-            //var lol = 3;
-            //var hey = lol / 0;
 
             Registration reg = new Registration();
             reg = GetId(id);
-
-            reg.Name = registration.Name;
-            reg.Email = registration.Email;
-            reg.Phone = registration.Phone;
-            reg.Created_Date = registration.Created_Date;
-            reg.Pickup_Date = registration.Pickup_Date;
-            reg.Service = _managementContext.Services.FirstOrDefault(e => e.ServiceName == registration.Service);
-            reg.Priority = _managementContext.Prioritys.FirstOrDefault(e => e.PriorityName == registration.Priority);
             reg.Status = _managementContext.Status.FirstOrDefault(e => e.StatusName == registration.Status);
 
             _managementContext.Entry(reg).State = EntityState.Modified;
             _managementContext.SaveChanges();
         }
+
+
+        //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        //Hier bin ich mir nicht sicher was verlangt wird. Muss man nur den Status ändern können oder den gesammten Datensatz?
+        // Wenn nur der Status, dann ist es wie Oben mit RegistrationStatusModel und wenn man den gesamten Datensatz ändern können soll,
+        //ist es mit Registrations Model wie unten auskommentiert ist. Natürlich müsste ich den Kontroller und IRegistration anpassen.
+        //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+        
+        //public void Update(int id, RegistrationModel registration)
+        //{
+
+        //    Registration reg = new Registration();
+        //    reg = GetId(id);
+
+        //    reg.Name = registration.Name;
+        //    reg.Email = registration.Email;
+        //    reg.Phone = registration.Phone;
+        //    reg.Created_Date = registration.Created_Date;
+        //    reg.Pickup_Date = registration.Pickup_Date;
+        //    reg.Service = _managementContext.Services.FirstOrDefault(e => e.ServiceName == registration.Service);
+        //    reg.Priority = _managementContext.Prioritys.FirstOrDefault(e => e.PriorityName == registration.Priority);
+        //    reg.Status = _managementContext.Status.FirstOrDefault(e => e.StatusName == registration.Status);
+
+        //    _managementContext.Entry(reg).State = EntityState.Modified;
+        //    _managementContext.SaveChanges();
+        //}
 
         /// <summary>
         /// Löscht eine Registration anhand ihrer Id
@@ -156,8 +170,6 @@ namespace Ski_Service_Management.Services
         /// <param name="id"></param>
         public void Delete(int id)
         {
-            //var lol = 3;
-            //var hey = lol / 0;
             var registration = GetId(id);
             if (registration is null)
                 return;

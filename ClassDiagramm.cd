@@ -1,0 +1,161 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Ski_Service_Management.Controllers.MitarbeiterController">
+    <Position X="4.75" Y="0.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAACAAAAIAAAAAAAAAAwAAAAAgA=</HashCode>
+      <FileName>Controllers\MitarbeiterController.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_mitarbeiterService" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Ski_Service_Management.Controllers.PriorityController">
+    <Position X="11" Y="0.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAgAAABAAAAA=</HashCode>
+      <FileName>Controllers\PriorityController.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_priorityService" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Ski_Service_Management.Controllers.RegistrationController">
+    <Position X="1.25" Y="0.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAABAAAAAAAQAIAEAAEAAAgAAAAAAAAA=</HashCode>
+      <FileName>Controllers\RegistrationController.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_registrationsService" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Ski_Service_Management.Services.MitarbeiterService" BaseTypeListCollapsed="true">
+    <Position X="4.75" Y="6" Width="2" />
+    <AssociationLine Name="_managementContext" Type="Ski_Service_Management.Models.ManagementContext">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.089" Y="3.05" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAgAgAAEAAAAAAAIAAAAAAAAAAEBAAAgAAAAAAA=</HashCode>
+      <FileName>Services\MitarbeiterService.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_tokenService" />
+      <Field Name="_managementContext" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Ski_Service_Management.Services.PriorityService" BaseTypeListCollapsed="true">
+    <Position X="11" Y="6" Width="2.25" />
+    <AssociationLine Name="_managementContext" Type="Ski_Service_Management.Models.ManagementContext">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-1.682" Y="2.195" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAIAAAAAAAAIAAAAAAAAAAAAAgAAAAAAAAA=</HashCode>
+      <FileName>Services\PriorityService.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_managementContext" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Ski_Service_Management.Services.RegistrationService" BaseTypeListCollapsed="true">
+    <Position X="1.25" Y="5.75" Width="2.25" />
+    <AssociationLine Name="_managementContext" Type="Ski_Service_Management.Models.ManagementContext">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.412" Y="5.956" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>gAYAAAAAAAAAAABAAAAIAAAAAAEAAAAAAgAAAAIAAAA=</HashCode>
+      <FileName>Services\RegistrationService.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_managementContext" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Ski_Service_Management.Services.TokenService" BaseTypeListCollapsed="true">
+    <Position X="14.5" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAEAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Services\TokenService.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Ski_Service_Management.Models.ManagementContext">
+    <Position X="7.75" Y="0.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAIQEAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\ManagementContext.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ski_Service_Management.Models.Mitarbeiter">
+    <Position X="5" Y="9.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAQAAQAAAAAAAAAAAgAAAAA=</HashCode>
+      <FileName>Models\Mitarbeiter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ski_Service_Management.Models.Priority">
+    <Position X="11.25" Y="9.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAAAAAAAAAAAAAABAEAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Priority.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ski_Service_Management.Models.Registration">
+    <Position X="1.5" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABCACAMACAAAAgEAAAAAAQEAAAAQAAAAAAAIAAAAAA=</HashCode>
+      <FileName>Models\Registration.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ski_Service_Management.Models.Service">
+    <Position X="16.25" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAABAA=</HashCode>
+      <FileName>Models\Service.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ski_Service_Management.Models.Status">
+    <Position X="18.25" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIAAAAAAAAAAAAAAQAAAAAQAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Status.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="Ski_Service_Management.Services.IMitarbeiterService">
+    <Position X="5.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgAAAAAAAAAAAAAAAAAAAAAAAABAAAgAAAAAAA=</HashCode>
+      <FileName>Services\IMitarbeiterService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Ski_Service_Management.Services.IPriorityService">
+    <Position X="11.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAA=</HashCode>
+      <FileName>Services\IPriorityService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Ski_Service_Management.Services.IRegistrationsService">
+    <Position X="1.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAYAAAAAAAAAAABAAAAAAAAAAAEAAAAAAgAAAAIAAAA=</HashCode>
+      <FileName>Services\IRegistrationsService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Ski_Service_Management.Services.ITokenService">
+    <Position X="14.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Services\ITokenService.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

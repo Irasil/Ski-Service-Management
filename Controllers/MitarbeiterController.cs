@@ -1,4 +1,5 @@
 ﻿using IdentityServer4.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Ski_Service_Management.Models;
@@ -9,6 +10,7 @@ namespace Ski_Service_Management.Controllers
     /// <summary>
     /// Kontroller für die Verbindung zu der Tabelle Mitarbeiter
     /// </summary>
+    [Authorize]
     [Route("[controller]")]
     [ApiController]
     public class MitarbeiterController : ControllerBase
@@ -25,6 +27,7 @@ namespace Ski_Service_Management.Controllers
         /// Alle Mitarbeiter Anzeigen ohne Passwörter
         /// </summary>
         /// <returns></returns>
+        
         [HttpGet]
         public IActionResult AllMitarbeiter()
         {
@@ -52,6 +55,8 @@ namespace Ski_Service_Management.Controllers
         /// </summary>
         /// <param name="model">Eingaben des Mitarbeiters</param>
         /// <returns>Ein JWT / Faschle eingaben / User ist blockiert</returns>
+        /// 
+        [AllowAnonymous]
         [HttpPost]
         public IActionResult Login([FromBody] Mitarbeiter model)
         {

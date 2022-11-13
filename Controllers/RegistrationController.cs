@@ -27,6 +27,7 @@ namespace Ski_Service_Management.Controllers
         /// Alle Registrationen
         /// </summary>
         /// <returns>Liste aller Registrationen</returns>
+        [AllowAnonymous]
         [HttpGet]        
         public ActionResult<List<RegistrationModel>> GetAll()
         {
@@ -68,6 +69,7 @@ namespace Ski_Service_Management.Controllers
         /// </summary>
         /// <param name="id">Id von der Registration</param>
         /// <returns>Die Registration mit der gesuchten Id</returns>
+        [AllowAnonymous]
         [HttpGet("{id}")]
         public ActionResult<RegistrationModel> Get(int id)
         {

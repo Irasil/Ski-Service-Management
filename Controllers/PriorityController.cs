@@ -26,7 +26,6 @@ namespace Ski_Service_Management.Controllers
         /// Liste aller Registrationen geordnet nach derer Priorität
         /// </summary>
         /// <returns>Liste der Registrationen geordnet nach Priorität</returns>
-        [Authorize]
         [HttpGet]
         public ActionResult<List<PriorityModel>> GetAll()
         {
